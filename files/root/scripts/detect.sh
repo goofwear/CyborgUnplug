@@ -154,18 +154,18 @@ while true;
                                 echo $src $dst $BSSID $freq
 
                                 if [ $src != $BSSID ]; then
-                                    sta=$src
+                                    STA=$src
                                 else 
-                                    sta=$dst 
+                                    STA=$dst 
                                 fi
 
-                                if [[ "$sta" == $TARGETS && "$BSSID" == $NETWORKS && "$MODE" == "territory" ]]; then
+                                if [[ "$STA" == $TARGETS && "$BSSID" == $NETWORKS && "$MODE" == "territory" ]]; then
                                         echo $line
                                         deauth
-                                elif [[ ( "$sta" == $TARGETS || "$BSSID" == $TARGETS ) && "$MODE" == "allout" ]]; then
+                                elif [[ ( "$STA" == $TARGETS || "$BSSID" == $TARGETS ) && "$MODE" == "allout" ]]; then
                                         deauth
                                 elif [[ "$MODE" == "alarm" ]]; then 
-                                        echo $(date) "detected" $sta "on" $BSSID >> $LOGS/detected
+                                        echo $(date) "detected" $STA "on" $BSSID >> $LOGS/detected
                                 else
                                     # Remove redirect during debugging
                                     echo "No targets detected this pair for mode:" $MODE > /dev/null 
